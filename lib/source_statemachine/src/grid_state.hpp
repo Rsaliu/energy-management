@@ -6,8 +6,11 @@
 
 class GridState :public StateInterface{
     public:
-        GridState();
+        GridState(StateActionInterface* stateActionInterface);
         void next(StateMachineInterface* machine,StateData& stateData);
         void printState() const override;
+        void stateAction() const override;
+    private:
+        StateActionInterface* stateActionInterface;
 };
 #endif

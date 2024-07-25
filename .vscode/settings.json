@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "new": "cpp"
+    },
+    "stm32-for-vscode.armToolchainPath": false
+}

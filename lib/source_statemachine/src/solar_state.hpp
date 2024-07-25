@@ -6,8 +6,11 @@
 #include <state_machine.hpp>
 class SolarState :public StateInterface{
     public:
-        SolarState();
+        SolarState(StateActionInterface* stateActionInterface);
         void next(StateMachineInterface* machine,StateData& stateData) override;
         void printState() const override;
+        void stateAction() const override;
+    private:
+        StateActionInterface* stateActionInterface;
 };
 #endif
