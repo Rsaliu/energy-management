@@ -1,26 +1,24 @@
 #include <Arduino.h>
-#include <grid_state.hpp>
 #include <state_machine.hpp>
 #include <state_actions.hpp>
-#include <grid_state.hpp>
 
-SourcePinConfig sourcePinConfig = {
+SourceStateMachine::SourcePinConfig sourcePinConfig = {
   .solarPin =2,
   .batteryPin = 3,
   .gridPin = 4,
 
 };
-StateActionInterface* stateActionInterface;
-StateInterface* initState;
-StateMachine* stateMachine;
+SourceStateMachine::StateActionInterface* stateActionInterface;
+SourceStateMachine::States initState;
+SourceStateMachine::StateMachine* stateMachine;
 void setup() {
   // put your setup code here, to run once:
-  stateActionInterface = &StateAction::getInstance(sourcePinConfig); 
-  initState = new GridState(stateActionInterface);
-  stateMachine = new StateMachine(initState);
+  stateActionInterface = &SourceStateMachine::StateAction::getInstance(sourcePinConfig); 
+  initState = SourceStateMachine::States::GRID;
+  stateMachine = new SourceStateMachine::StateMachine(initState,stateActionInterface);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  
+
 }

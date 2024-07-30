@@ -7,13 +7,13 @@ namespace SourceStateMachine
     {
         bool solarAboveThreshold;
         bool batteryAboveDoD;
-        bool peakPeriod;
     };
 
     enum class States
     {
-        NORMAL,
-        PEAK,
+        SOLAR,
+        BATTERY,
+        GRID
     };
     class StateMachine
     {
