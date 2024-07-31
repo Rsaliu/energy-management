@@ -1,25 +1,26 @@
 #ifndef __STATE_MACHINE_H__
 #define __STATE_MACHINE_H__
-#include <state_actions.hpp>
-namespace SourceStateMachine
+#include <load_state_actions.hpp>
+#include <common_header.hpp>
+namespace LoadStateMachine
 {
-    struct StateData
-    {
-        bool solarAboveThreshold;
-        bool batteryAboveDoD;
-    };
 
     enum class States
     {
-        SOLAR,
+        OFF,
+        SOLAR_NOPEAK,
+        SOLAR_PEAKAM,
+        SOLAR_PEAKPM,
+        GRID_NOPEAK,
+        GRID_PEAKAM,
+        GRID_PEAKPM,
         BATTERY,
-        GRID
     };
     class StateMachine
     {
     public:
         StateMachine(States currentState, StateActionInterface *stateActionInterface);
-        void nextState(StateData stateData);
+        void nextState(Common::StateData stateData);
         ~StateMachine()
         {
         }

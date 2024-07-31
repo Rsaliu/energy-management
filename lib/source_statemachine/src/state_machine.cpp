@@ -5,7 +5,7 @@ namespace SourceStateMachine
                                                                                                   stateActionInterface(stateActionInterface)
     {
     }
-    void StateMachine::nextState(StateData stateData)
+    void StateMachine::nextState(Common::StateData stateData)
     {
         States previousState = currentState;
         switch (currentState)
@@ -18,7 +18,6 @@ namespace SourceStateMachine
             else if (!stateData.solarAboveThreshold && !stateData.batteryAboveDoD)
             {
                 currentState = States::GRID;
-                takeAction(currentState);
             }
             else
                 ;
