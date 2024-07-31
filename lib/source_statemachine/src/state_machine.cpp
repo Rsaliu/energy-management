@@ -1,4 +1,5 @@
 #include "state_machine.hpp"
+#include <Arduino.h>
 namespace SourceStateMachine
 {
     StateMachine::StateMachine(States currentState, StateActionInterface *stateActionInterface) : currentState(currentState),
@@ -52,6 +53,9 @@ namespace SourceStateMachine
 
     void StateMachine::takeAction(States currentState)
     {
+        if(!stateActionInterface){
+            Serial.println("StateAction interface cannot be null");
+        }
         switch (currentState)
         {
         case States::SOLAR:

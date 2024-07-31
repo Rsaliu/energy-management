@@ -1,5 +1,5 @@
-#ifndef __STATE_MACHINE_H__
-#define __STATE_MACHINE_H__
+#ifndef __LOAD_STATE_MACHINE_H__
+#define __LOAD_STATE_MACHINE_H__
 #include <load_state_actions.hpp>
 #include <common_header.hpp>
 namespace LoadStateMachine

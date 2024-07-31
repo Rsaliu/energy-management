@@ -1,5 +1,5 @@
-#ifndef __STATE_ACTION_H__
-#define __STATE_ACTION_H__
+#ifndef __LOAD_STATE_ACTION_H__
+#define __LOAD_STATE_ACTION_H__
 namespace LoadStateMachine
 {
     enum LoadState{

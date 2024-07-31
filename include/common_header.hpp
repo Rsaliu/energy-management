@@ -9,6 +9,7 @@ namespace Common
         bool peakAMOn;
         bool peakPMOn;
     };
+
 } // namespace name
 
 #endif

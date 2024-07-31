@@ -1,4 +1,5 @@
 #include "load_state_machine.hpp"
+#include <Arduino.h>
 namespace LoadStateMachine
 {
     StateMachine::StateMachine(States currentState, StateActionInterface *stateActionInterface) : currentState(currentState),
@@ -132,6 +133,9 @@ namespace LoadStateMachine
 
     void StateMachine::takeAction(States currentState)
     {
+        if(!stateActionInterface){
+            Serial.println("StateAction interface cannot be null");
+        }
         switch (currentState)
         {
         case States::SOLAR_NOPEAK:
