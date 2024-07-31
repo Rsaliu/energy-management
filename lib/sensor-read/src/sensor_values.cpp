@@ -3,11 +3,11 @@
 
 using namespace SensorRead;
 
-// SensorReadingInterface constructor
+
 SensorReadingInterface::SensorReadingInterface(int threshold, int pinNumber)
     : threshold(threshold), pinNumber(pinNumber) {}
 
-// LDR class
+
 LDR::LDR(int threshold, int pinNumber) 
     : SensorReadingInterface(threshold, pinNumber) {}
 
@@ -21,7 +21,7 @@ bool LDR::getState()
     return readSensor() >= threshold;
 }
 
-// Battery class
+
 Battery::Battery(int threshold, int pinNumber) 
     : SensorReadingInterface(threshold, pinNumber) {}
 
@@ -35,7 +35,7 @@ bool Battery::getState()
     return readSensor() >= threshold;
 }
 
-// Grid class
+
 Grid::Grid(int pinPeakAm, int pinPeakPm) 
     : SensorReadingInterface(0, 0), pinPeakAm(pinPeakAm), pinPeakPm(pinPeakPm) {}
 

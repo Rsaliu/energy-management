@@ -1,17 +1,16 @@
 #include "sensor_values.hpp"
 #include <Arduino.h>
 
- // Threshold values
 #define SolarThreshold 100
 #define batteryThreshold 150
 
 using namespace SensorRead;
 
 void setup() {
-    // Initialize Serial for debugging
+    
     Serial.begin(9600);
 
-    // Pin configuration
+    
     SensorPinConfig sensorPinConfig = {
         .solarPin = A0,
         .batteryPin = A1,
@@ -19,7 +18,7 @@ void setup() {
         .peakPm = 3,
     };
 
-    // Initialize the pins
+  
     pinMode(sensorPinConfig.solarPin, INPUT);
     pinMode(sensorPinConfig.batteryPin, INPUT);
     pinMode(sensorPinConfig.peakAm, INPUT);
@@ -27,12 +26,12 @@ void setup() {
 
    
 
-    // Create sensor instances
+  
     LDR ldr(SolarThreshold, sensorPinConfig.solarPin);
     Battery battery(batteryThreshold, sensorPinConfig.batteryPin);
     Grid grid(sensorPinConfig.peakAm, sensorPinConfig.peakPm);
 
-    // Example usage
+  
     Serial.print("LDR Sensor Value: ");
     Serial.println(ldr.readSensor());
     Serial.print("LDR Sensor State: ");
@@ -55,5 +54,5 @@ void setup() {
 }
 
 void loop() {
-    // Your main loop code
+    
 }

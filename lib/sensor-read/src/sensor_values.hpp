@@ -10,7 +10,7 @@ namespace SensorRead
     
         SensorReadingInterface(int threshold, int pinNumber);
 
-        // Pure virtual functions
+       
         virtual int readSensor() = 0;
         virtual bool getState() = 0;
 
