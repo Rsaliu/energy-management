@@ -12,8 +12,9 @@ namespace SourceStateMachine
 
     enum class States
     {
-        NORMAL,
-        PEAK,
+        SOLAR,
+        BATTERY,
+        GRID
     };
     class StateMachine
     {
