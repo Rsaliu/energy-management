@@ -47,10 +47,10 @@ namespace SensorRead
     };
 
 
-    class Grid : public SensorReadingInterface
+    class PeakPeriod : public SensorReadingInterface
     {
     public:
-        Grid(int pinPeakAm, int pinPeakPm);
+        PeakPeriod(int pinPeakAm, int pinPeakPm);
         int readSensor() override;
         bool getState() override;
 
