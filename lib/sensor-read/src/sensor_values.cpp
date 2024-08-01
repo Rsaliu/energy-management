@@ -36,17 +36,17 @@ bool Battery::getState()
 }
 
 
-Grid::Grid(int pinPeakAm, int pinPeakPm) 
+PeakPeriod::PeakPeriod(int pinPeakAm, int pinPeakPm) 
     : SensorReadingInterface(0, 0), pinPeakAm(pinPeakAm), pinPeakPm(pinPeakPm) {}
 
-int Grid::readSensor()
+int PeakPeriod::readSensor()
 {
     if (digitalRead(pinPeakPm) == HIGH) return 1;
     if (digitalRead(pinPeakAm) == HIGH) return 2;
     return 0;
 }
 
-bool Grid::getState()
+bool PeakPeriod::getState()
 {
     return readSensor() != 0;
 }
