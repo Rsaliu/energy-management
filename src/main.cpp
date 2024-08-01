@@ -29,7 +29,7 @@ void setup() {
   
     LDR ldr(SolarThreshold, sensorPinConfig.solarPin);
     Battery battery(batteryThreshold, sensorPinConfig.batteryPin);
-    Grid grid(sensorPinConfig.peakAm, sensorPinConfig.peakPm);
+    PeakPeriod peakPeriod(sensorPinConfig.peakAm, sensorPinConfig.peakPm);
 
   
     Serial.print("LDR Sensor Value: ");
@@ -42,11 +42,11 @@ void setup() {
     Serial.print("Battery Sensor State: ");
     Serial.println(battery.getState() ? "High" : "Low");
 
-    Serial.print("Grid Sensor State: ");
-    int gridState = grid.readSensor();
-    if (gridState == 1) {
+    Serial.print("Peak Sensor State: ");
+    int peakState = peakPeriod.readSensor();
+    if (peakState == 1) {
         Serial.println("Peak PM");
-    } else if (gridState == 2) {
+    } else if (peakState == 2) {
         Serial.println("Peak AM");
     } else {
         Serial.println("No Peak");
