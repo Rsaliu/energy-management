@@ -29,7 +29,8 @@ void setup() {
   
     LDR ldr(SolarThreshold, sensorPinConfig.solarPin);
     Battery battery(batteryThreshold, sensorPinConfig.batteryPin);
-    PeakPeriod peakPeriod(sensorPinConfig.peakAm, sensorPinConfig.peakPm);
+    PeakPeriodAM peakPeriodAm(sensorPinConfig.peakAm);
+    PeakPeriodPM peakPeriodPm(sensorPinConfig.peakPm);
 
   
     Serial.print("LDR Sensor Value: ");
@@ -42,15 +43,11 @@ void setup() {
     Serial.print("Battery Sensor State: ");
     Serial.println(battery.getState() ? "High" : "Low");
 
-    Serial.print("Peak Sensor State: ");
-    int peakState = peakPeriod.readSensor();
-    if (peakState == 1) {
-        Serial.println("Peak PM");
-    } else if (peakState == 2) {
-        Serial.println("Peak AM");
-    } else {
-        Serial.println("No Peak");
-    }
+    Serial.print("Peak AM Sensor State: ");
+    Serial.println(peakPeriodAm.getState() ? "High" : "Low");
+
+    Serial.print("Peak PM Sensor State: ");
+    Serial.println(peakPeriodPm.getState() ? "High" : "Low");
 }
 
 void loop() {
