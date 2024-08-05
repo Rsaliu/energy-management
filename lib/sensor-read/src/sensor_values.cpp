@@ -36,17 +36,29 @@ bool Battery::getState()
 }
 
 
-PeakPeriod::PeakPeriod(int pinPeakAm, int pinPeakPm) 
-    : SensorReadingInterface(0, 0), pinPeakAm(pinPeakAm), pinPeakPm(pinPeakPm) {}
+PeakPeriodAM::PeakPeriodAM(int pinNumber) 
+    : SensorReadingInterface(0, pinNumber) {}
 
-int PeakPeriod::readSensor()
+int PeakPeriodAM::readSensor()
 {
-    if (digitalRead(pinPeakPm) == HIGH) return 1;
-    if (digitalRead(pinPeakAm) == HIGH) return 2;
-    return 0;
+    return digitalRead(pinNumber);
 }
 
-bool PeakPeriod::getState()
+bool PeakPeriodAM::getState()
 {
-    return readSensor() != 0;
+    return readSensor() == HIGH;
+}
+
+
+PeakPeriodPM::PeakPeriodPM(int pinNumber) 
+    : SensorReadingInterface(0, pinNumber) {}
+
+int PeakPeriodPM::readSensor()
+{
+    return digitalRead(pinNumber);
+}
+
+bool PeakPeriodPM::getState()
+{
+    return readSensor() == HIGH;
 }
