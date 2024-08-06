@@ -29,8 +29,8 @@ void setup() {
   
     LDR ldr(SolarThreshold, sensorPinConfig.solarPin);
     Battery battery(batteryThreshold, sensorPinConfig.batteryPin);
-    PeakPeriodAM peakPeriodAm(sensorPinConfig.peakAm);
-    PeakPeriodPM peakPeriodPm(sensorPinConfig.peakPm);
+    PeakPeriod peakPeriodAm(sensorPinConfig.peakAm);
+    PeakPeriod peakPeriodPm(sensorPinConfig.peakPm);
 
   
     Serial.print("LDR Sensor Value: ");
