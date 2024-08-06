@@ -47,21 +47,15 @@ namespace SensorRead
     };
 
 
-    class PeakPeriodAM : public SensorReadingInterface
+    class PeakPeriod : public SensorReadingInterface
     {
     public:
-        PeakPeriodAM(int pinNumber);
+        PeakPeriod(int pinNumber);
         int readSensor() override;
         bool getState() override;
     };
 
-    class PeakPeriodPM : public SensorReadingInterface
-    {
-    public:
-        PeakPeriodPM(int pinNumber);
-        int readSensor() override;
-        bool getState() override;
-    };
+  
 }
 
 #endif 
