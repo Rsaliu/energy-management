@@ -1,5 +1,7 @@
 #include "load_state_machine.hpp"
+
 #include <Arduino.h>
+
 namespace LoadStateMachine
 {
     StateMachine::StateMachine(States currentState, StateActionInterface *stateActionInterface) : currentState(currentState),
@@ -127,6 +129,13 @@ namespace LoadStateMachine
         }
         if (previousState != currentState)
         {
+            Serial.println("<<<<< Load SM >>>>>>>>");
+            Serial.println("previous state is: ");
+            Serial.println((int)previousState);
+            Serial.println("new state is: ");
+            Serial.println((int)currentState);
+            Serial.println();
+             Serial.println("<<<<<<<<<<>>>>>>>>>>>>");
             takeAction(currentState);
         }
     }
@@ -134,7 +143,9 @@ namespace LoadStateMachine
     void StateMachine::takeAction(States currentState)
     {
         if(!stateActionInterface){
+            
             Serial.println("StateAction interface cannot be null");
+            
         }
         switch (currentState)
         {

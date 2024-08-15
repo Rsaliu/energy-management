@@ -11,8 +11,16 @@ namespace LoadStateMachine
     {
     }
     void StateAction::setLoad(LoadPattern pattern){
+        Serial.println("load pattern: ");
+        Serial.print("Primary load: ");
+        Serial.println((int)pattern.primaryLoad);
+        Serial.print("flexible1 load: ");
+        Serial.println((int)pattern.flexibleLoadOne);
+        Serial.print("flexible2 load: ");
+        Serial.println((int)pattern.flexibleLoadTwo);
         digitalWrite(config.primaryLoad,pattern.primaryLoad);
         digitalWrite(config.flexibleLoadOne,pattern.flexibleLoadOne);
         digitalWrite(config.flexibleLoadTwo,pattern.flexibleLoadTwo);
+        
     }
 }

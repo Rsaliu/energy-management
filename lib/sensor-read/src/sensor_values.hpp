@@ -8,14 +8,13 @@ namespace SensorRead
     {
     public:
     
-        SensorReadingInterface(int threshold, int pinNumber);
+        SensorReadingInterface(int pinNumber);
 
        
         virtual int readSensor() = 0;
         virtual bool getState() = 0;
 
     protected:
-        int threshold;
         int pinNumber;
     };
 
@@ -35,6 +34,8 @@ namespace SensorRead
         LDR(int threshold, int pinNumber);
         int readSensor() override;
         bool getState() override;
+    private:
+        int threshold;
     };
 
 
@@ -44,6 +45,8 @@ namespace SensorRead
         Battery(int threshold, int pinNumber);
         int readSensor() override;
         bool getState() override;
+    private:
+        int threshold;
     };
 
 

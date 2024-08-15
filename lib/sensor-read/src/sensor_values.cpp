@@ -1,52 +1,66 @@
 #include "sensor_values.hpp"
+
 #include <Arduino.h>
+
 
 using namespace SensorRead;
 
 
-SensorReadingInterface::SensorReadingInterface(int threshold, int pinNumber)
-    : threshold(threshold), pinNumber(pinNumber) {}
+SensorReadingInterface::SensorReadingInterface(int pinNumber)
+    :  pinNumber(pinNumber) {}
 
 
 LDR::LDR(int threshold, int pinNumber) 
-    : SensorReadingInterface(threshold, pinNumber) {}
+    : SensorReadingInterface(pinNumber),threshold(threshold)  {}
 
 int LDR::readSensor()
 {
-    return analogRead(pinNumber);
+    
+        return analogRead(pinNumber);
+
+    
 }
 
 bool LDR::getState()
 {
-    return readSensor() >= threshold;
+    int val = readSensor();
+    Serial.println("LDR value is: "+(String)val);
+    return val >= threshold;
 }
 
 
 Battery::Battery(int threshold, int pinNumber) 
-    : SensorReadingInterface(threshold, pinNumber) {}
+    : SensorReadingInterface(pinNumber),threshold(threshold) {}
 
 int Battery::readSensor()
 {
-    return analogRead(pinNumber);
+    
+        return analogRead(pinNumber);
+    
+
 }
 
 bool Battery::getState()
 {
-    return readSensor() >= threshold;
+    int val = readSensor();
+    Serial.println("Battery value is: "+(String)val);
+    return val >= threshold;
 }
 
 
 PeakPeriod::PeakPeriod(int pinNumber) 
-    : SensorReadingInterface(0, pinNumber) {}
+    : SensorReadingInterface(pinNumber) {}
 
 int PeakPeriod::readSensor()
 {
-    return digitalRead(pinNumber);
+    
+        return digitalRead(pinNumber);
+    
 }
 
 bool PeakPeriod::getState()
 {
-    return readSensor() == HIGH;
+    return readSensor() == LOW;
 }
 
 

@@ -1,10 +1,15 @@
 #include "state_machine.hpp"
+  
 #include <Arduino.h>
+
 namespace SourceStateMachine
 {
     StateMachine::StateMachine(States currentState, StateActionInterface *stateActionInterface) : currentState(currentState),
                                                                                                   stateActionInterface(stateActionInterface)
     {
+    }
+    States StateMachine::getCurrentState(){
+        return currentState;
     }
     void StateMachine::nextState(Common::StateData stateData)
     {
@@ -47,6 +52,12 @@ namespace SourceStateMachine
         }
         if (previousState != currentState)
         {
+            Serial.println("<<<<< Source SM >>>>>>>>");
+            Serial.println("previous state is: ");
+            Serial.println((int)previousState);
+            Serial.println("new state is: ");
+            Serial.println((int)currentState);
+            Serial.println("<<<<<<<<<<>>>>>>>>>>>>");
             takeAction(currentState);
         }
     }
@@ -54,7 +65,9 @@ namespace SourceStateMachine
     void StateMachine::takeAction(States currentState)
     {
         if(!stateActionInterface){
+            
             Serial.println("StateAction interface cannot be null");
+            
         }
         switch (currentState)
         {
