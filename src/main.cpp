@@ -1,3 +1,4 @@
+#include "sensor_values.hpp"
 #include <Arduino.h>
 #include <load_state_actions.hpp>
 #include <load_state_machine.hpp>
