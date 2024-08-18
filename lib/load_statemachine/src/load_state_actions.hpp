@@ -3,8 +3,8 @@
 namespace LoadStateMachine
 {
     enum LoadState{
-        OFF=0,
-        ON
+        OFF=1,
+        ON=0
     };
     struct LoadPattern{
         LoadState primaryLoad;

@@ -2,6 +2,10 @@
 #define __STATE_ACTION_H__
 namespace SourceStateMachine
 {
+    enum SourceState{
+        OFF=1,
+        ON=0
+    };
     class StateActionInterface
     {
     public:

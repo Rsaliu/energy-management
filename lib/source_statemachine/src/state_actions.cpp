@@ -15,25 +15,25 @@ namespace SourceStateMachine
     void StateAction::feedFromSolar()
     {
         Common::println("feeding from Solar");
-        digitalWrite(config.batteryPin, LOW);
-        digitalWrite(config.gridPin, LOW);
-        digitalWrite(config.solarPin, HIGH);
+        digitalWrite(config.batteryPin, SourceState::OFF);
+        digitalWrite(config.gridPin, SourceState::OFF);
+        digitalWrite(config.solarPin, SourceState::ON);
         
     }
     void StateAction::feedFromBattery()
     {
         Common::println("feeding from Battery");
-        digitalWrite(config.batteryPin, HIGH);
-        digitalWrite(config.gridPin, LOW);
-        digitalWrite(config.solarPin, LOW);
+        digitalWrite(config.batteryPin, SourceState::ON);
+        digitalWrite(config.gridPin, SourceState::OFF);
+        digitalWrite(config.solarPin, SourceState::OFF);
         
     }
     void StateAction::feedFromGrid()
     {
         Common::println("feeding from Grid");
-        digitalWrite(config.batteryPin, LOW);
-        digitalWrite(config.gridPin, HIGH);
-        digitalWrite(config.solarPin, LOW);
+        digitalWrite(config.batteryPin, SourceState::OFF);
+        digitalWrite(config.gridPin, SourceState::ON);
+        digitalWrite(config.solarPin, SourceState::OFF);
         
     }
 }
