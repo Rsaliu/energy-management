@@ -10,6 +10,13 @@ namespace LoadStateMachine
         LoadState primaryLoad;
         LoadState flexibleLoadOne;
         LoadState flexibleLoadTwo;
+
+        bool operator==(const LoadPattern& loadPattern)const {
+            if(primaryLoad != loadPattern.primaryLoad) return false;
+            if(flexibleLoadOne != loadPattern.flexibleLoadOne) return false;
+            if(flexibleLoadTwo != loadPattern.flexibleLoadTwo) return false;
+            return true;
+        }
     };
     class StateActionInterface
     {

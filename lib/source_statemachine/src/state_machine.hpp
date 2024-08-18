@@ -15,7 +15,7 @@ namespace SourceStateMachine
     {
     public:
         StateMachine(States currentState, StateActionInterface *stateActionInterface);
-        void nextState(Common::StateData stateData);
+        void nextState(Common::SourceStateData stateData);
         States getCurrentState();
         ~StateMachine()
         {

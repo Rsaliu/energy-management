@@ -1,5 +1,5 @@
 #include "state_machine.hpp"
-  
+#include <common_header.hpp>
 #include <Arduino.h>
 
 namespace SourceStateMachine
@@ -7,11 +7,12 @@ namespace SourceStateMachine
     StateMachine::StateMachine(States currentState, StateActionInterface *stateActionInterface) : currentState(currentState),
                                                                                                   stateActionInterface(stateActionInterface)
     {
+        takeAction(currentState);
     }
     States StateMachine::getCurrentState(){
         return currentState;
     }
-    void StateMachine::nextState(Common::StateData stateData)
+    void StateMachine::nextState(Common::SourceStateData stateData)
     {
         States previousState = currentState;
         switch (currentState)
@@ -33,7 +34,7 @@ namespace SourceStateMachine
             {
                 currentState = States::SOLAR;
             }
-            else if (!stateData.batteryAboveDoD)
+            else if (!stateData.batteryAboveDoD && !stateData.solarAboveThreshold)
             {
                 currentState = States::GRID;
             }
@@ -45,6 +46,10 @@ namespace SourceStateMachine
             {
                 currentState = States::SOLAR;
             }
+            else if(!stateData.solarAboveThreshold && stateData.batteryAboveDoD){
+                currentState = States::BATTERY;
+            }
+            else;
             break;
 
         default:
@@ -64,7 +69,7 @@ namespace SourceStateMachine
     {
         if(!stateActionInterface){
             
-            Serial.println("StateAction interface cannot be null");
+            Common::println("StateAction interface cannot be null");
             
         }
         switch (currentState)
