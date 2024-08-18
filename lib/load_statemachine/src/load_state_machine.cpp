@@ -129,13 +129,12 @@ namespace LoadStateMachine
         }
         if (previousState != currentState)
         {
-            Serial.println("<<<<< Load SM >>>>>>>>");
-            Serial.println("previous state is: ");
-            Serial.println((int)previousState);
-            Serial.println("new state is: ");
-            Serial.println((int)currentState);
-            Serial.println();
-             Serial.println("<<<<<<<<<<>>>>>>>>>>>>");
+            char buff[200];
+            sprintf(buff, "<<<<< Load SM >>>>>>>>\nprevious state is: %d\nnew state is:  %d\n",
+                    (int)previousState, (int)currentState);
+            Common::println(buff);
+
+            Common::println("<<<<<<<<<<>>>>>>>>>>>>");
             takeAction(currentState);
         }
     }

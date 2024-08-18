@@ -52,12 +52,10 @@ namespace SourceStateMachine
         }
         if (previousState != currentState)
         {
-            Serial.println("<<<<< Source SM >>>>>>>>");
-            Serial.println("previous state is: ");
-            Serial.println((int)previousState);
-            Serial.println("new state is: ");
-            Serial.println((int)currentState);
-            Serial.println("<<<<<<<<<<>>>>>>>>>>>>");
+            char buff[100];
+            sprintf(buff,"<<<<< Source SM >>>>>>>> \nprevious state is:  %d\nnew state is: %d\n<<<<<<<<<<>>>>>>>>>>>>",
+            (int)previousState,(int)currentState);
+            Common::println(buff);
             takeAction(currentState);
         }
     }

@@ -1,7 +1,7 @@
 #include "state_actions.hpp"
 
 #include <Arduino.h>
-
+#include <common_header.hpp>
 namespace SourceStateMachine
 {
     StateAction &StateAction::getInstance(SourcePinConfig config)
@@ -14,7 +14,7 @@ namespace SourceStateMachine
     }
     void StateAction::feedFromSolar()
     {
-        Serial.println("feeding from Solar");
+        Common::println("feeding from Solar");
         digitalWrite(config.batteryPin, LOW);
         digitalWrite(config.gridPin, LOW);
         digitalWrite(config.solarPin, HIGH);
@@ -22,7 +22,7 @@ namespace SourceStateMachine
     }
     void StateAction::feedFromBattery()
     {
-        Serial.println("feeding from Battery");
+        Common::println("feeding from Battery");
         digitalWrite(config.batteryPin, HIGH);
         digitalWrite(config.gridPin, LOW);
         digitalWrite(config.solarPin, LOW);
@@ -30,7 +30,7 @@ namespace SourceStateMachine
     }
     void StateAction::feedFromGrid()
     {
-        Serial.println("feeding from Grid");
+        Common::println("feeding from Grid");
         digitalWrite(config.batteryPin, LOW);
         digitalWrite(config.gridPin, HIGH);
         digitalWrite(config.solarPin, LOW);

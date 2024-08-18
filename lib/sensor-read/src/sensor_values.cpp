@@ -1,5 +1,5 @@
 #include "sensor_values.hpp"
-
+#include <common_header.hpp>
 #include <Arduino.h>
 
 
@@ -24,7 +24,9 @@ int LDR::readSensor()
 bool LDR::getState()
 {
     int val = readSensor();
-    Serial.println("LDR value is: "+(String)val);
+    char buff[50];
+    sprintf(buff,"LDR value is: %d\n",val);
+    Common::println(buff);
     return val >= threshold;
 }
 
@@ -43,7 +45,9 @@ int Battery::readSensor()
 bool Battery::getState()
 {
     int val = readSensor();
-    Serial.println("Battery value is: "+(String)val);
+    char buff[50];
+    sprintf(buff,"Battery value is: %d\n",val);
+    Common::println(buff);
     return val >= threshold;
 }
 
