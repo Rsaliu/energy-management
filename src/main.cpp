@@ -1,5 +1,5 @@
 #include "sensor_values.hpp"
-  
+#include <common_header.hpp>
 #include <Arduino.h>
 
 #include <load_state_actions.hpp>
@@ -57,7 +57,7 @@ SensorRead::SensorReadingInterface* peakPMSensorObj;
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+  //Serial.begin(9600);
   pinMode(SOLAR_SOURCE_PIN,OUTPUT);
   pinMode(BATTERY_SOURCE_PIN,OUTPUT);
   pinMode(GRID_SOURCE_PIN,OUTPUT);
@@ -73,13 +73,14 @@ void setup() {
   sourceStateMachine = new SourceStateMachine::StateMachine(sourceInitState,sourceStateActionInterface);
 
   loadStateActionInterface = &LoadStateMachine::StateAction::getInstance(loadPinConfig);
-  loadInitState = LoadStateMachine::States::OFF;
+  loadInitState = LoadStateMachine::States::SOLAR_NOPEAK;
   loadStateMachine = new LoadStateMachine::StateMachine(loadInitState,loadStateActionInterface);
 
   ldrOrSolarSensorObj = new  SensorRead::LDR(SolarThreshold, sensorPinConfig.solarPin);
   batterySensorObj =   new SensorRead::Battery(BatteryThreshold, sensorPinConfig.batteryPin);
   peakAMSensorObj = new SensorRead::PeakPeriod(sensorPinConfig.peakAm);
   peakPMSensorObj = new SensorRead::PeakPeriod(sensorPinConfig.peakPm);
+  Common::println("<<<<<<<< Setup completed: Starting state machines >>>>>>>>>");
 }
 
 bool StateGetter(SensorRead::SensorReadingInterface* sensorInterface){
@@ -98,10 +99,11 @@ void loop() {
   bool batteryState = StateGetter(batterySensorObj);
   bool peakAMState = StateGetter(peakAMSensorObj);
   bool peakPMState = StateGetter(peakPMSensorObj);
-  
-  Common::StateData stateData(ldrOrSolarState,batteryState,peakAMState,peakPMState);
+  Common::SourceStateData sourceStateData(ldrOrSolarState,batteryState);
+  Common::SourcePeakData sourcePeakData(peakAMState,peakPMState);
+  Common::StateData stateData(sourceStateData,sourcePeakData);
   stateData.print();
-  sourceStateMachine->nextState(stateData);
+  sourceStateMachine->nextState(sourceStateData);
 
   loadStateMachine->nextState(stateData);
   delay(10);
