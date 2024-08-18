@@ -7,7 +7,6 @@ namespace LoadStateMachine
 
     enum class States
     {
-        OFF,
         SOLAR_NOPEAK,
         SOLAR_PEAKAM,
         SOLAR_PEAKPM,
@@ -21,6 +20,8 @@ namespace LoadStateMachine
     public:
         StateMachine(States currentState, StateActionInterface *stateActionInterface);
         void nextState(Common::StateData stateData);
+        States getCurrentState();
+        void forceToState(States currentState);
         ~StateMachine()
         {
         }
