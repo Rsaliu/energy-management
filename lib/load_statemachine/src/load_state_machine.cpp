@@ -49,7 +49,7 @@ namespace LoadStateMachine
         case States::SOLAR_PEAKAM:
             if (stateData.sourceStateData.solarAboveThreshold)
             {
-                if (stateData.sourcePeakData.peakPMOn)
+                if (stateData.sourcePeakData.peakPMOn&& !stateData.sourcePeakData.peakAMOn)
                 {
                     currentState = States::SOLAR_PEAKPM;
                 }
@@ -72,7 +72,7 @@ namespace LoadStateMachine
         case States::SOLAR_PEAKPM:
             if (stateData.sourceStateData.solarAboveThreshold)
             {
-                if (stateData.sourcePeakData.peakAMOn)
+                if (stateData.sourcePeakData.peakAMOn&&!stateData.sourcePeakData.peakPMOn)
                 {
                     currentState = States::SOLAR_PEAKAM;
                 }
@@ -131,7 +131,7 @@ namespace LoadStateMachine
         case States::GRID_PEAKAM:
             if (!stateData.sourceStateData.solarAboveThreshold && ! stateData.sourceStateData.batteryAboveDoD)
             {
-                if (stateData.sourcePeakData.peakPMOn)
+                if (stateData.sourcePeakData.peakPMOn && !stateData.sourcePeakData.peakAMOn)
                 {
                     currentState = States::GRID_PEAKPM;
                 }
@@ -154,7 +154,7 @@ namespace LoadStateMachine
         case States::GRID_PEAKPM:
             if (!stateData.sourceStateData.solarAboveThreshold && ! stateData.sourceStateData.batteryAboveDoD)
             {
-                if (stateData.sourcePeakData.peakAMOn)
+                if (stateData.sourcePeakData.peakAMOn && !stateData.sourcePeakData.peakPMOn)
                 {
                     currentState = States::GRID_PEAKAM;
                 }

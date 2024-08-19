@@ -57,7 +57,7 @@ SensorRead::SensorReadingInterface* peakPMSensorObj;
 
 void setup() {
   // put your setup code here, to run once:
-  //Serial.begin(9600);
+  Serial.begin(9600);
   pinMode(SOLAR_SOURCE_PIN,OUTPUT);
   pinMode(BATTERY_SOURCE_PIN,OUTPUT);
   pinMode(GRID_SOURCE_PIN,OUTPUT);
