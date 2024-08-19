@@ -6,12 +6,12 @@
 #include <load_state_machine.hpp>
 #include <state_machine.hpp>
 #include <state_actions.hpp>
-constexpr const int SOLAR_SOURCE_PIN = 13;
-constexpr const int BATTERY_SOURCE_PIN = 12;
-constexpr const int GRID_SOURCE_PIN = 11;
-constexpr const int PRIMARY_LOAD_PIN = 8;
-constexpr const int FLEX_LOAD_ONE_PIN = 9;
-constexpr const int FLEX_LOAD_TWO_PIN = 10;
+constexpr const int SOLAR_SOURCE_PIN = 8;
+constexpr const int BATTERY_SOURCE_PIN = 9;
+constexpr const int GRID_SOURCE_PIN = 10;
+constexpr const int PRIMARY_LOAD_PIN = 11;
+constexpr const int FLEX_LOAD_ONE_PIN = 12;
+constexpr const int FLEX_LOAD_TWO_PIN = 13;
 constexpr const int SOLAR_LDR_INPUT_PIN = A0;
 constexpr const int BATTERY_INPUT_PIN = A1;
 constexpr const int PEAKAM_INPUT = 2;
@@ -68,6 +68,12 @@ void setup() {
   pinMode(BATTERY_INPUT_PIN,INPUT);
   pinMode(PEAKAM_INPUT,INPUT_PULLUP);
   pinMode(PEAKPM_INPUT,INPUT_PULLUP);
+  digitalWrite(SOLAR_SOURCE_PIN,HIGH);
+  digitalWrite(BATTERY_SOURCE_PIN,HIGH);
+  digitalWrite(GRID_SOURCE_PIN,HIGH);
+  digitalWrite(PRIMARY_LOAD_PIN,HIGH);
+  digitalWrite(FLEX_LOAD_ONE_PIN,HIGH);
+  digitalWrite(FLEX_LOAD_TWO_PIN,HIGH);
   sourceStateActionInterface = &SourceStateMachine::StateAction::getInstance(sourcePinConfig); 
   sourceInitState = SourceStateMachine::States::GRID;
   sourceStateMachine = new SourceStateMachine::StateMachine(sourceInitState,sourceStateActionInterface);
@@ -106,5 +112,5 @@ void loop() {
   sourceStateMachine->nextState(sourceStateData);
 
   loadStateMachine->nextState(stateData);
-  delay(10);
+  delay(2000);
 }
