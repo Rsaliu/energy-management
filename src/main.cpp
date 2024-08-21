@@ -18,8 +18,8 @@ constexpr const int PEAKAM_INPUT = 2;
 constexpr const int PEAKPM_INPUT = 3;
 
 
-constexpr const int SolarThreshold = 750;
-constexpr const int BatteryThreshold = 768;
+constexpr const int SolarThreshold = 350;
+constexpr const int BatteryThreshold = 250;
 SourceStateMachine::SourcePinConfig sourcePinConfig = {
   .solarPin =SOLAR_SOURCE_PIN,
   .batteryPin = BATTERY_SOURCE_PIN,
