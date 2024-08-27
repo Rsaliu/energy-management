@@ -16,7 +16,8 @@ namespace SourceStateMachine
     {
         Common::println("feeding from Solar");
         digitalWrite(config.batteryPin, SourceState::OFF);
-        digitalWrite(config.gridPin, SourceState::OFF);
+        // Due to change request  from Olay, We will keep grid always on, in any state
+        digitalWrite(config.gridPin, SourceState::ON);
         digitalWrite(config.solarPin, SourceState::ON);
         
     }
@@ -24,7 +25,8 @@ namespace SourceStateMachine
     {
         Common::println("feeding from Battery");
         digitalWrite(config.batteryPin, SourceState::ON);
-        digitalWrite(config.gridPin, SourceState::OFF);
+        // Due to change request  from Olay, We will keep grid always on, in any state
+        digitalWrite(config.gridPin, SourceState::ON);
         digitalWrite(config.solarPin, SourceState::OFF);
         
     }
